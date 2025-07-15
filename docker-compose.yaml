@@ -2,6 +2,7 @@
 
 volumes:
   prometheus_data:
+  grafana_data:
 
 services:
   prometheus:
@@ -12,3 +13,9 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - ./alerts.yml:/etc/prometheus/alerts.yml 
       - prometheus_data:/prometheus
+  grafana:
+    image: grafana/grafana-oss:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
